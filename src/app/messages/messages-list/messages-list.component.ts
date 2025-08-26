@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { MessagesService } from "../messages.service";
 
 @Component({
   selector: 'app-messages-list',
@@ -8,8 +9,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessagesListComponent {
-  messages = input.required<string[]>();
 
+  public messages = this.messagesService.allMessages;
+  constructor(private messagesService: MessagesService) {
+  }
   get debugOutput() {
     console.log('[MessagesList] "debugOutput" binding re-evaluated.');
     return 'MessagesList Component Debug Output';
