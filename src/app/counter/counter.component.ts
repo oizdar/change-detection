@@ -12,7 +12,7 @@ import { InfoMessageComponent } from '../info-message/info-message.component';
 export class CounterComponent implements OnInit {
   count = signal(0);
 
-  constructor(private zone: NgZone) {
+  constructor() {
     console.log('[Counter] component constructed.');
   }
   get debugOutput() {
@@ -27,11 +27,9 @@ export class CounterComponent implements OnInit {
       this.count.set(0);
     }, 4000)
 
-    this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        console.log('[Counter] "outside" zone === without change detection.');
-      }, 6000);
-    })
+    setTimeout(() => {
+      console.log('[Counter] Timer expired!');
+    }, 5000)
   }
 
   onDecrement() {
